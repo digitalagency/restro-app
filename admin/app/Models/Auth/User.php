@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Models\Auth;
-
 use App\Models\Traits\Uuid;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +10,6 @@ use App\Models\Auth\Traits\SendUserPasswordReset;
 use App\Models\Auth\Traits\Attribute\UserAttribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Auth\Traits\Relationship\UserRelationship;
-
 /**
  * Class User.
  */
@@ -27,7 +24,6 @@ class User extends Authenticatable
         UserRelationship,
         UserScope,
         Uuid;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -46,19 +42,16 @@ class User extends Authenticatable
         'confirmed',
         'timezone',
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-
     /**
      * @var array
      */
     protected $dates = ['deleted_at'];
-
     /**
      * The dynamic attributes from mutators that should be returned with the user object.
      * @var array

@@ -14,6 +14,12 @@ class AuthController extends Controller
     public function _construct(){
         $this->middleware('guest',['except'=>'getLogout']);
     }
+
+    public function Something(Request $request){
+        $a=$request-> accepts('email');
+        return ('$a');
+
+    }
     public function authenticate(Request $request){
         $credentials=$request->only('email','password');
 
@@ -26,7 +32,7 @@ class AuthController extends Controller
             return $this->response->error(['error'=>'something went wrong'],500);
         }
 
-        return $this->response->array(compact('token'))->setStatusCode(200);
+        return $this->response->json(compact('token'))->setStatusCode(200);
     }
     protected function create(array $data)
     {

@@ -20,12 +20,22 @@ $api= app('Dingo\Api\Routing\Router');
 
 $api->version('v1',function($api){
     $api->get('hello','App\Http\Controllers\HomeController@index');
-    $api->post('authenticate','App\Http\Controllers\Auth\AuthController@authenticate',['only'=>['index']]);
+    $api->get('register','App\Http\Controllers\Frontend\Auth\RegisterController@showRegistrationForm()');
+    $api->post('register', 'RegisterController@register')->name('register.post');
+    $api->get('something',function(){
+        return ("Hell O");
+    });
+    //$api->get('add','app\Http\Controllers\Frontend\Auth\RegisterController@showRegistrationForm()');
+   // $api->match(['get','post'],'add','app\Http\Controllers\Auth\AuthController@Something()');
+    //$api->post('add','RegisterController@register');
 });
 
-//Route::group(['prefix'=>'api'],function(){
-//    Route::post('authenticate','AuthenticateController@authenticate');
-//});
+Route::group(['prefix'=>'api'],function(){
+   Route::get('register','RegisterController@showRegistrationForm()');
+    Route::post('register', 'RegisterController@register')->name('register.post');
+    Route::post('add','App\Http\Controllers\Frontend\Auth\RegisterController@register');
+   // Route::match(['post','get'],'add','Frontend\Auth\RegisterController@showRegistrationForm');
+});
 
 
 

@@ -58,6 +58,12 @@ class Handler extends ExceptionHandler
                 ->route(home_route())
                 ->withFlashDanger(__('auth.general_error'));
         }
+        if($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException)
+        {
+            return response()->json([
+                'message' => 'Resource not Found'
+            ],404);
+        }
 
         return parent::render($request, $exception);
     }
